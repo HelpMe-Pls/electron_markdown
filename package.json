@@ -1,7 +1,7 @@
 {
-  "name": "firesale",
+  "name": "markdown-utils",
   "version": "1.0.0",
-  "description": "A Frontend Masters Example Application",
+  "description": "An Electron Example Application",
   "main": "app/main.js",
   "dependencies": {
     "electron": "^3.0.10",
@@ -19,15 +19,22 @@
     "postinstall": "electron-rebuild",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "useTabs": true,
+    "semi": true,
+    "singleQuote": true
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/electron-in-action/firesale.git"
+    "url": "git+https://github.com/HelpMe-Pls/electron_markdown.git"
   },
   "keywords": [],
-  "author": "Steve Kinney <hello@stevekinney.net> (http://stevekinney.net)",
+  "author": "Khoi Le <khoile5399@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/electron-in-action/firesale/issues"
+    "url": "https://github.com/HelpMe-Pls/electron_markdown/issues"
   },
-  "homepage": "https://github.com/electron-in-action/firesale#readme"
+  "homepage": "https://github.com/HelpMe-Pls/electron_markdown/#readme"
 }
