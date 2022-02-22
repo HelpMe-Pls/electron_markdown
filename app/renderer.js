@@ -32,21 +32,25 @@ markdownView.addEventListener('keyup', (event) => {
 	updateUI(currentContent !== ogContent);
 });
 
-// newFileButton.addEventListener('click', () => {
-// 	mainProcess.createWindow();
-// });
+newFileButton.addEventListener('click', () => {
+	mainProcess.createNewWindow();
+});
 
 openFileButton.addEventListener('click', () => {
 	mainProcess.getFileFromUser();
 });
 
-saveMarkdownButton.addEventListener('click', () => {
+const saveMarkdown = () => {
 	mainProcess.saveMarkdown(filePath, markdownView.value);
-});
+};
+saveMarkdownButton.addEventListener('click', saveMarkdown);
+ipcRenderer.on('save-markdown', saveMarkdown);
 
-saveHtmlButton.addEventListener('click', () => {
+const saveHtml = () => {
 	mainProcess.saveHtml(htmlView.innerHTML);
-});
+};
+saveHtmlButton.addEventListener('click', saveHtml);
+ipcRenderer.on('save-html', saveHtml);
 
 showFileButton.addEventListener('click', () => {
 	if (!filePath) return alert('File not found');
