@@ -2,7 +2,7 @@
 
 const path = require('path');
 const marked = require('marked');
-const { remote, ipcRenderer, app } = require('electron');
+const { remote, ipcRenderer, shell } = require('electron');
 
 let filePath = null;
 let ogContent = '';
@@ -48,6 +48,12 @@ saveHtmlButton.addEventListener('click', () => {
 	mainProcess.saveHtml(htmlView.innerHTML);
 });
 
+showFileButton.addEventListener('click', () => {
+	if (!filePath) return alert('File not found');
+
+	shell.openItemInFolder(filePath);
+});
+
 const updateUI = (isEdited) => {
 	let title = 'Markdown Utils';
 	if (filePath) {
@@ -62,6 +68,9 @@ const updateUI = (isEdited) => {
 	// for MacOS:
 	currentWindow.setDocumentEdited(isEdited);
 	if (filePath) currentWindow.setRepresentedFilename(filePath);
+
+	showFileButton.disabled = !filePath;
+	openInDefaultButton.disabled = !filePath;
 
 	saveMarkdownButton.disabled = !isEdited;
 	revertButton.disabled = !isEdited;
