@@ -19,7 +19,7 @@ app.on('ready', function () {
 console.log('It is what it is.');
 
 exports.getFileFromUser = () => {
-	const files = dialog.showOpenDialog({
+	const files = dialog.showOpenDialog(mainWindow, {
 		properties: ['openFile'],
 		// limiting the file types that the user can select
 		buttonLabel: 'Select File',
@@ -42,7 +42,7 @@ exports.getFileFromUser = () => {
 
 exports.saveMarkdown = (file, content) => {
 	if (!file) {
-		file = dialog.showSaveDialog({
+		file = dialog.showSaveDialog(mainWindow, {
 			title: 'Save Markdown',
 			defaultPath: app.getPath('desktop'),
 			filters: [
@@ -58,6 +58,17 @@ exports.saveMarkdown = (file, content) => {
 
 	fs.writeFileSync(file, content);
 	openFile(file);
+};
+
+exports.saveHtml = (content) => {
+	const file = dialog.showSaveDialog(mainWindow, {
+		title: 'Save HTML',
+		defaultPath: app.getPath('desktop'),
+		filters: [{ name: 'HTML Files ', extension: ['html', 'htm'] }],
+	});
+
+	if (!file) return;
+	fs.writeFileSync(file, content);
 };
 
 const openFile = (file) => {
