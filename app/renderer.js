@@ -51,7 +51,13 @@ saveHtmlButton.addEventListener('click', () => {
 showFileButton.addEventListener('click', () => {
 	if (!filePath) return alert('File not found');
 
-	shell.openItemInFolder(filePath);
+	shell.showItemInFolder(filePath);
+});
+
+openInDefaultButton.addEventListener('click', () => {
+	if (!filePath) return alert('File not found');
+
+	shell.openItem(filePath);
 });
 
 const updateUI = (isEdited) => {
