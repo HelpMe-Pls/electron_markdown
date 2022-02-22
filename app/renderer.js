@@ -2,7 +2,7 @@
 
 const path = require('path');
 const marked = require('marked');
-const { remote, ipcRenderer } = require('electron');
+const { remote, ipcRenderer, app } = require('electron');
 
 let filePath = null;
 let ogContent = '';
@@ -32,23 +32,16 @@ markdownView.addEventListener('keyup', (event) => {
 	updateUI(currentContent !== ogContent);
 });
 
-newFileButton.addEventListener('click', () => {
-	mainProcess.createWindow();
-});
+// newFileButton.addEventListener('click', () => {
+// 	mainProcess.createWindow();
+// });
 
 openFileButton.addEventListener('click', () => {
 	mainProcess.getFileFromUser();
 });
 
-// the {event} is always there as a default param
-ipcRenderer.on('file-opened', (event, file, content) => {
-	filePath = file;
-	ogContent = content;
-
-	markdownView.value = content;
-	renderMarkdownToHtml(content);
-
-	updateUI();
+saveMarkdownButton.addEventListener('click', () => {
+	mainProcess.saveMarkdown(filePath, markdownView.value);
 });
 
 const updateUI = (isEdited) => {
@@ -60,13 +53,23 @@ const updateUI = (isEdited) => {
 	if (isEdited) {
 		title += '*';
 	}
-	console.log(isEdited);
 	currentWindow.setTitle(title);
 
 	// for MacOS:
 	currentWindow.setDocumentEdited(isEdited);
-	currentWindow.setRepresentedFilename(filePath);
+	if (filePath) currentWindow.setRepresentedFilename(filePath);
 
-	saveHtmlButton.disabled = !isEdited;
+	saveMarkdownButton.disabled = !isEdited;
 	revertButton.disabled = !isEdited;
 };
+
+// the {event} is always there as a default param
+ipcRenderer.on('file-opened', (event, file, content) => {
+	filePath = file;
+	ogContent = content;
+
+	markdownView.value = content;
+	renderMarkdownToHtml(content);
+
+	updateUI(false);
+});
