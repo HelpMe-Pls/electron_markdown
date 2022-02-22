@@ -25,8 +25,11 @@ exports.getFileFromUser = () => {
 		buttonLabel: 'Select File',
 		title: 'Choose your file',
 		filters: [
+			{
+				name: 'Markdown Files',
+				extensions: ['md', 'markdown', 'markdn', 'mdown'],
+			},
 			{ name: 'Text Files', extensions: ['txt', 'text'] },
-			{ name: 'Markdown Files', extensions: ['md', 'markdown'] },
 		],
 	});
 
