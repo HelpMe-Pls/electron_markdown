@@ -43,6 +43,8 @@ exports.getFileFromUser = () => {
 const openFile = (file) => {
 	const content = fs.readFileSync(file).toString();
 
+	app.addRecentDocument(file);
+
 	// to actually open the file's content, which gets listened by the {ipcRenderer} on the renderer.js
 	mainWindow.webContents.send('file-opened', file, content);
 };

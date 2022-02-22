@@ -28,6 +28,12 @@ markdownView.addEventListener('keyup', (event) => {
 	const currentContent = event.target.value;
 
 	renderMarkdownToHtml(currentContent);
+
+	updateUI(currentContent !== ogContent);
+});
+
+newFileButton.addEventListener('click', () => {
+	mainProcess.createWindow();
 });
 
 openFileButton.addEventListener('click', () => {
@@ -45,11 +51,22 @@ ipcRenderer.on('file-opened', (event, file, content) => {
 	updateUI();
 });
 
-const updateUI = () => {
+const updateUI = (isEdited) => {
 	let title = 'Markdown Utils';
 	if (filePath) {
 		title = `${title} - ${path.basename(filePath)}`;
 	}
 
+	if (isEdited) {
+		title += '*';
+	}
+	console.log(isEdited);
 	currentWindow.setTitle(title);
+
+	// for MacOS:
+	currentWindow.setDocumentEdited(isEdited);
+	currentWindow.setRepresentedFilename(filePath);
+
+	saveHtmlButton.disabled = !isEdited;
+	revertButton.disabled = !isEdited;
 };
