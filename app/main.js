@@ -71,11 +71,12 @@ exports.saveHtml = (content) => {
 	fs.writeFileSync(file, content);
 };
 
-const openFile = (file) => {
+// This function is used both internally in this file and externally as a module, so that's why there's a weird looking "exports" placement there
+const openFile = (exports.openFile = (file) => {
 	const content = fs.readFileSync(file).toString();
 
 	app.addRecentDocument(file);
 
 	// to actually open the file's content, which gets listened by the {ipcRenderer} on the renderer.js
 	mainWindow.webContents.send('file-opened', file, content);
-};
+});
