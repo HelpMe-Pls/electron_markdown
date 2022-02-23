@@ -19,30 +19,6 @@ app.on('ready', function () {
 	mainWindow.once('ready-to-show', () => {
 		mainWindow.show();
 	});
-
-	mainWindow.on('close', (event) => {
-		if (mainWindow.isDocumentEdited()) {
-			event.preventDefault();
-
-			const result = dialog.showMessageBox(mainWindow, {
-				type: 'warning',
-				title: 'Quit with Unsaved Changes?',
-				message:
-					'Your changes will be lost permanently if you do not save.',
-				buttons: ['Quit Anyway', 'Cancel'],
-				cancelId: 1,
-				defaultId: 0,
-			});
-
-			if (result === 0) mainWindow.destroy();
-		}
-	});
-
-	mainWindow.on('closed', () => {
-		windows.delete(mainWindow);
-		stopWatchingFile(mainWindow);
-		mainWindow = null;
-	});
 });
 
 exports.createNewWindow = () => {
@@ -62,30 +38,6 @@ exports.createNewWindow = () => {
 
 	newWindow.once('ready-to-show', () => {
 		newWindow.show();
-	});
-
-	newWindow.on('close', (event) => {
-		if (newWindow.isDocumentEdited()) {
-			event.preventDefault();
-
-			const result = dialog.showMessageBox(newWindow, {
-				type: 'warning',
-				title: 'Quit with Unsaved Changes?',
-				message:
-					'Your changes will be lost permanently if you do not save.',
-				buttons: ['Quit Anyway', 'Cancel'],
-				cancelId: 1,
-				defaultId: 0,
-			});
-
-			if (result === 0) newWindow.destroy();
-		}
-	});
-
-	newWindow.on('closed', () => {
-		windows.delete(newWindow);
-		stopWatchingFile(newWindow);
-		newWindow = null;
 	});
 
 	windows.add(newWindow);
@@ -207,10 +159,3 @@ if (process.platform === 'darwin') {
 }
 
 const appMenu = Menu.buildFromTemplate(template);
-
-const stopWatchingFile = (targetWindow) => {
-	if (openFiles.has(targetWindow)) {
-		openFiles.get(targetWindow).stop();
-		openFiles.delete(targetWindow);
-	}
-};
