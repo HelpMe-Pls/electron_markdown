@@ -13,7 +13,8 @@ app.on('ready', function () {
 	mainWindow = new BrowserWindow({ show: false });
 	mainWindow.loadFile(`${__dirname}/index.html`);
 
-	Menu.setApplicationMenu(appMenu);
+	// Custom menu bar
+	// Menu.setApplicationMenu(appMenu);
 
 	// to get rid of the blank screen flash right before the HTML is mounted
 	mainWindow.once('ready-to-show', () => {
