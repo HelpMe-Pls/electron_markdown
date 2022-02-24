@@ -1,4 +1,4 @@
-const { app, BrowserWindow, dialog, Menu } = require('electron');
+const { app, BrowserWindow, dialog, Menu, shell } = require('electron');
 const mainProcess = require('./main');
 
 const createApplicationMenu = () => {
@@ -148,8 +148,10 @@ const createApplicationMenu = () => {
 			submenu: [
 				{
 					label: 'Visit Website',
-					click() {
-						/* To be implemented */
+					click: async () => {
+						await shell.openExternal(
+							'https://github.com/HelpMe-Pls/electron_markdown'
+						);
 					},
 				},
 				{

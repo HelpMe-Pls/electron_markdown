@@ -9,6 +9,7 @@
     "marked": "^0.5.2"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.17.0",
     "babel-eslint": "^10.0.1",
     "devtron": "^1.4.0",
     "electron-packager": "^13.0.0",
