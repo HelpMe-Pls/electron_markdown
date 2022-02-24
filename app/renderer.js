@@ -3,6 +3,7 @@
 const path = require('path');
 const marked = require('marked');
 const { remote, ipcRenderer, shell } = require('electron');
+require('./crash-reporter');
 
 let filePath = null;
 let ogContent = '';

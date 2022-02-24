@@ -2,9 +2,11 @@
 
 const fs = require('fs');
 const { app, BrowserWindow, dialog, Menu } = require('electron');
+const createApplicationMenu = require('./application-menu');
+require('./crash-reporter');
+console.log('main process:', process.type);
 
 const windows = new Set();
-const openFiles = new Map();
 
 let mainWindow = null; // so that the window stays after being mounted and not potentially be garbage collected (i.e. it'll stay until the user actually close it)
 
@@ -14,7 +16,7 @@ app.on('ready', function () {
 	mainWindow.loadFile(`${__dirname}/index.html`);
 
 	// Custom menu bar
-	// Menu.setApplicationMenu(appMenu);
+	createApplicationMenu();
 
 	// to get rid of the blank screen flash right before the HTML is mounted
 	mainWindow.once('ready-to-show', () => {
@@ -107,56 +109,3 @@ const openFile = (exports.openFile = (file) => {
 	// to actually open the file's content, which gets listened by the {ipcRenderer} on the renderer.js
 	mainWindow.webContents.send('file-opened', file, content);
 });
-
-const template = [
-	{
-		label: 'File',
-		submenu: [
-			{
-				label: 'Open file',
-				accelerator: 'CommandOrControl+O',
-				click() {
-					exports.getFileFromUser();
-				},
-			},
-			{
-				label: 'Save file',
-				accelerator: 'CommandOrControl+S',
-				click() {
-					mainWindow.webContents.send('save-markdown');
-				},
-			},
-			{
-				label: 'Save HTML',
-				accelerator: 'CommandOrControl+Shift+S',
-				click() {
-					mainWindow.webContents.send('save-html');
-				},
-			},
-			{
-				label: 'Copy',
-				role: 'copy',
-			},
-		],
-	},
-];
-
-// For MacOS
-if (process.platform === 'darwin') {
-	const appName = 'Markdown Utils';
-	template.unshift({
-		label: appName,
-		submenu: [
-			{
-				label: `About ${appName}`,
-				role: 'about',
-			},
-			{
-				label: `Quit ${appName}`,
-				role: 'quit',
-			},
-		],
-	});
-}
-
-const appMenu = Menu.buildFromTemplate(template);
