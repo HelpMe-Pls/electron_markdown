@@ -1,5 +1,6 @@
 {
   "name": "markdown-utils",
+  "productName": "Markdown Utils",
   "version": "1.0.0",
   "description": "An Electron Example Application",
   "main": "app/main.js",
@@ -8,16 +9,20 @@
     "marked": "^0.5.2"
   },
   "devDependencies": {
-    "babel-eslint": "^7.1.1",
+    "babel-eslint": "^10.0.1",
     "devtron": "^1.4.0",
-    "electron-packager": "^8.3.0",
-    "eslint": "^3.11.0",
-    "eslint-plugin-import": "^2.2.0"
+    "electron-packager": "^13.0.0",
+    "eslint": "^5.10.0",
+    "eslint-plugin-import": "^2.14.0"
   },
   "scripts": {
     "start": "electron .",
     "postinstall": "electron-rebuild",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build-win",
+    "build-mac": "electron-packager . --out=\"build\" --overwrite --asar",
+    "build-win": "electron-packager . --out=\"build\" --overwrite --asar",
+    "build-linux": "electron-packager . --out=\"build\" --overwrite --asar"
   },
   "prettier": {
     "trailingComma": "es5",

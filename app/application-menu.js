@@ -200,7 +200,7 @@ const createApplicationMenu = () => {
 					accelerator: 'Command+Q',
 					click() {
 						app.quit();
-					}, // A
+					},
 				},
 			],
 		});
