@@ -1,7 +1,7 @@
 // Kinda like representing the backend
 
 const fs = require('fs');
-const { app, BrowserWindow, dialog, Menu } = require('electron');
+const { app, BrowserWindow, dialog } = require('electron');
 const createApplicationMenu = require('./application-menu');
 require('./crash-reporter');
 console.log('main process:', process.type);
