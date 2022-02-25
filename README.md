@@ -3,7 +3,7 @@
 Inspired by the instructions from [this course](https://frontendmasters.com/courses/electron-v2/)
 
 ## Usage
-This project has its built version as a desktop app (only available on Windows, for now), which you can download and extract the [source code](https://github.com/HelpMe-Pls/electron_markdown/archive/refs/heads/master.zip) then find the executable app in folder `electron_markdown/build/Markdown Utils-win32-x64/Markdown Utils.exe`.
+This project has its built version as a desktop app (only available on Windows, for now), which you can download and extract the [source code](https://github.com/HelpMe-Pls/electron_markdown/releases/tag/v1.0.0) then find the executable app in folder `electron_markdown/build/Markdown Utils-win32-x64/Markdown Utils.exe`.
 
 Markdown files format can be found [here](https://www.markdownguide.org/basic-syntax)
 
