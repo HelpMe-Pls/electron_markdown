@@ -1,16 +1,16 @@
 # Markdown Utils
 
-Inspired by the instructions from [this course](https://frontendmasters.com/courses/electron-v2/)
+Inspired by the instructions from [this course](https://frontendmasters.com/courses/electron-v2/).
 
 ## Usage
 This project has its built version as a desktop app (only available on Windows, for now), which you can download and extract the [source code](https://github.com/HelpMe-Pls/electron_markdown/releases/tag/v1.0.0) then find the executable app in folder `electron_markdown-1.0.0/build/Markdown Utils-win32-x64/Markdown Utils.exe`.
 
-Markdown files format can be found [here](https://www.markdownguide.org/basic-syntax)
+Markdown files format can be found [here](https://www.markdownguide.org/basic-syntax).
 
-The project also serves as a crash reporter for [electron-clip-with-testing](https://github.com/HelpMe-Pls/electron-clip-with-testing#readme) 
+The project also serves as a crash reporter for [electron-clip-with-testing](https://github.com/HelpMe-Pls/electron-clip-with-testing#readme).
 ## Installation
 
-If you want to run the project in **dev mode**, make sure to have the same environment as I do to get it working properly. Please download and install these 2 softwares if you don't have them already:
+If you want to run the project in **dev mode**, make sure to have the same environment as I do to get it working properly. Please download and install these 2 softwares (if you don't have them already):
 1.  **nvm-setup.zip** from its [latest release](https://github.com/coreybutler/nvm-windows/releases)
 2.  [Git](https://git-scm.com/downloads)
 
