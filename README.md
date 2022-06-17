@@ -8,6 +8,8 @@ This project has its built version as a desktop app (only available on Windows, 
 Markdown files format can be found [here](https://www.markdownguide.org/basic-syntax).
 
 The project also serves as a crash reporter for [electron-clip-with-testing](https://github.com/HelpMe-Pls/electron-clip-with-testing#readme).
+
+
 ## Installation
 
 If you want to run the project in **dev mode**, make sure to have the same environment as I do to get it working properly. Please download and install these 2 softwares (if you don't have them already):
@@ -23,6 +25,12 @@ Then open up your terminal with Admin privilege and run:
 6. `cd electron_markdown`
 7. `npm i`
 8. `npm start`
+
+
+## Contributing
+Pull requests are most welcome. For breaking changes suggestion, please open an issue first to discuss what you would like to change/improve.
+
+[Contact me](https://www.facebook.com/messages/t/100005341874318) if you need further support.
    
 
 
